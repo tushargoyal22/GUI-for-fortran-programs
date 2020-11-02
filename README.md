@@ -1,8 +1,8 @@
 # GUI for Fortran programs
 
-Instructor: Padmanabhan Rajan Sir
-Client: Aman Chandel
-TA Coordinator:  Avantika
+- Instructor: Padmanabhan Rajan 
+- Client: Aman Chandel
+- TA Coordinator:  Avantika
 
 
 # Team Members
