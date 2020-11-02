@@ -1,6 +1,8 @@
-# File-Info
-Instructor: Padmanabhan Rajan Sir
+# GUI for Fortran programs
 
+Instructor: Padmanabhan Rajan Sir
+Client: Aman Chandel
+TA Coordinator:  Avantika
 
 
 # Team Members
@@ -18,7 +20,3 @@ Instructor: Padmanabhan Rajan Sir
 1. Install `tkinter` : `sudo apt install python3-tk`
 2. Install required dependencies : `pip3 install -r requirements.txt`
 3. Run main.py : `python3 main.py`
-
-
-
-
