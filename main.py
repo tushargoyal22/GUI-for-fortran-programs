@@ -6,7 +6,7 @@ root = Tk()
 root.title('LAP - GUI for Fortran')
 root.geometry("450x420")
 
- 
+
 def open_txt():
 	global file_name
 	file_name = filedialog.askopenfilename(title="Open dat file", filetypes=(("dat files", "*.dat"), ))
@@ -22,14 +22,37 @@ def save_txt():
 	text_file.write(my_text.get(1.0, END))
 
 
-my_text = Text(root, width=40, height=10, font=("Helvetica", 16))
-my_text.pack(pady=20)
+def openEditWindow():
+	editWindow = Tk()
+	editWindow.title('Forward modelling')
+	editWindow.geometry("450x420")
+
+	global my_text
+	my_text = Text(editWindow, width=40, height=10, font=("Helvetica", 16))
+	my_text.pack(pady=20)
+
+	open_button = Button(editWindow, text="Open dat File", command=open_txt)
+	open_button.pack(pady=20)
+
+	save_button = Button(editWindow, text="Save File", command=save_txt)
+	save_button.pack(pady=20)
+
+	editWindow.mainloop()
 
 
-open_button = Button(root, text="Open dat File", command=open_txt)
-open_button.pack(pady=20)
+def openParameterEstimationWindow():
+	parameterEstimationWindow = Tk()
+	parameterEstimationWindow.title('Parameter estimation')
+	parameterEstimationWindow.geometry("450x420")
 
-save_button = Button(root, text="Save File", command=save_txt)
-save_button.pack(pady=20)
+	parameterEstimationWindow.mainloop()
+
+
+
+editButton = Button(root, text = "Forward modelling", command = openEditWindow)
+editButton.pack()
+
+parameterEstimationButton = Button(root, text = "Parameter estimation", command = openParameterEstimationWindow)
+parameterEstimationButton.pack()
 
 root.mainloop()
