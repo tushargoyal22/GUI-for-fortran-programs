@@ -80,9 +80,9 @@ def GraphFunction():
 	edit.mainloop()
 	
 editButton = Button(root, text = "Forward modelling", command = openEditWindow)
-editButton.pack()
+editButton.pack(expand = YES)
 
 parameterEstimationButton = Button(root, text = "Parameter estimation", command = openParameterEstimationWindow)
-parameterEstimationButton.pack()
+parameterEstimationButton.pack(expand = YES)
 
 root.mainloop()
