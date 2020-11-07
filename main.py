@@ -66,12 +66,19 @@ def GraphFunction():
 	img= ImageTk.PhotoImage(img)
 	panel = Label(edit, image=img)
 	panel.pack(side=TOP,anchor=NE,fill="both")
+	#reading output and time files
 	output = pd.read_csv("output.dat", delimiter=r"\s+",header=None)
 	time = pd.read_csv("in_2.dat", header = None)
 	time = time[2:]
-	plt.plot(output[0], time)	
-	plt.plot(output[1], time)
+	#plotting graph of concentration vs time
+	plt.plot(time,output[0], label="Experimental")	
+	plt.plot(time,output[1], label="Simulated")
+	plt.xlabel("Time")
+	plt.ylabel("Concentration")
+	plt.legend()
+	plt.title("Concentration vs Time graph")
 	plt.savefig('graph.png',dpi=100)
+	#displays the image of graph
 	img2 =Image.open("graph.png")
 	img2=img2.resize((500,500),Image.ANTIALIAS)
 	img2= ImageTk.PhotoImage(img2)
