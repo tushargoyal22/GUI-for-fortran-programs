@@ -26,6 +26,22 @@ def save_txt():
 def run_txt():
 	os.system('test.exe')
 
+
+def openHelpWindow():
+	helpWindow = Toplevel()
+	helpWindow.title('Help')
+	helpWindow.geometry("500x1000")
+
+	img = Image.open("help.jpeg")
+	img = img.resize((600, 1000), Image.ANTIALIAS)
+	img = ImageTk.PhotoImage(img)
+	panel = Label(helpWindow, image=img)
+	panel.pack(side = TOP, anchor = NE, fill = "both")
+
+	helpWindow.mainloop()
+
+
+
 def openEditWindow():
 	editWindow = Tk()
 	editWindow.title('Forward modelling')
@@ -36,16 +52,19 @@ def openEditWindow():
 	my_text.pack(pady=20)
 
 	open_button = Button(editWindow, text="Open dat File", command=open_txt)
-	open_button.pack(pady=20)
+	open_button.pack(pady=15)
 
 	save_button = Button(editWindow, text="Save File", command=save_txt)
-	save_button.pack(pady=20)
+	save_button.pack(pady=15)
 
 	run_button = Button(editWindow, text="Run", command=run_txt)
-	run_button.pack(pady=20)
+	run_button.pack(pady=15)
 
 	PlotButton = Button(editWindow, text = "Plot", command = GraphFunction)
-	PlotButton.pack(pady=20)
+	PlotButton.pack(pady=15)
+
+	helpButton = Button(editWindow, text = "Help", command = openHelpWindow)
+	helpButton.pack(pady=15)
 
 	editWindow.mainloop()
 
