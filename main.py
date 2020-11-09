@@ -5,11 +5,7 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 from PIL import Image, ImageTk
-import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
 from tkinter import ttk 
-
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_gtk3agg import FigureCanvas
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,  
