@@ -9,8 +9,8 @@
 
 |   | Name | Roll No.  |
 |--------|--------|--------|
-|A| Ashutosh Sharma  | B18010  |
-|B| Tushar Goyal | B18030  |
+|A| Tushar Goyal | B18030  |
+|B| Ashutosh Sharma  | B18010 |
 |C| Anuj Goel    | B18161  |
 |D|  Inderjeet | B18058  |
 |E| Keshav Garg  | B18119  |
