@@ -5,6 +5,13 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 from PIL import Image, ImageTk
+from tkinter import ttk 
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_gtk3agg import FigureCanvas
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,  
+NavigationToolbar2Tk) 
+
+
 global edit
 root = Tk()
 root.title('LAP - GUI for Fortran')
@@ -45,7 +52,7 @@ def openHelpWindow():
 def openEditWindow():
 	editWindow = Tk()
 	editWindow.title('Forward modelling')
-	editWindow.geometry("450x550")
+	editWindow.geometry("450x600")
 	
 	global my_text
 	my_text = Text(editWindow, width=40, height=10, font=("Helvetica", 16))
@@ -77,33 +84,68 @@ def openParameterEstimationWindow():
 	parameterEstimationWindow.mainloop()
 
 def GraphFunction():
-	edit = Toplevel()
-	edit.title('Graph')
-	edit.geometry("500x500")
-	img =Image.open("download.png")
-	img=img.resize((500,500),Image.ANTIALIAS)
-	img= ImageTk.PhotoImage(img)
-	panel = Label(edit, image=img)
-	panel.pack(side=TOP,anchor=NE,fill="both")
+	window = Tk() 
+	window.title('Graphs') 
+	window.geometry("700x500")
+	tabControl = ttk.Notebook(window) 
+	tab1 = ttk.Frame(tabControl) 
+	tab2 = ttk.Frame(tabControl) 
+	tab3 = ttk.Frame(tabControl)
+
+	tabControl.add(tab1, text ='Experimental Data') 
+	tabControl.add(tab2, text ='Simulated Data') 
+	tabControl.add(tab3, text ='Combined Data') 
+	tabControl.pack(expand = 1, fill ="both") 
+
 	#reading output and time files
 	output = pd.read_csv("output.dat", delimiter=r"\s+",header=None)
 	time = pd.read_csv("in_2.dat", header = None)
 	time = time[2:]
-	#plotting graph of concentration vs time
-	plt.plot(time,output[0], label="Experimental")	
-	plt.plot(time,output[1], label="Simulated")
-	plt.xlabel("Time")
-	plt.ylabel("Concentration")
-	plt.legend()
-	plt.title("Concentration vs Time graph")
-	plt.savefig('graph.png',dpi=100)
-	#displays the image of graph
-	img2 =Image.open("graph.png")
-	img2=img2.resize((500,500),Image.ANTIALIAS)
-	img2= ImageTk.PhotoImage(img2)
-	panel.config(image=img2)
-	panel.image = img2
-	edit.mainloop()
+
+	fig = Figure(figsize=(5,4), dpi=100)
+	ax = fig.add_subplot(111)
+	ax.plot(time,output[0], label="Experimental")
+	ax.set_xlabel("Time")
+	ax.set_ylabel("Concentration")
+	ax.legend()
+
+	canvas = FigureCanvasTkAgg(fig, master = tab1)
+	canvas.draw()
+	canvas.get_tk_widget().pack()
+	toolbar = NavigationToolbar2Tk(canvas, tab1)
+	toolbar.update() 
+	canvas.get_tk_widget().pack()
+
+	fig2 = Figure(figsize=(5,4), dpi=100)
+	ax2 = fig2.add_subplot(111)
+	ax2.plot(time,output[1], label="Simulated")
+	ax2.set_xlabel("Time")
+	ax2.set_ylabel("Concentration")
+	ax2.legend()
+
+	canvas2 = FigureCanvasTkAgg(fig2, master = tab2)
+	canvas2.draw()
+	canvas2.get_tk_widget().pack()
+	toolbar2 = NavigationToolbar2Tk(canvas2, tab2)
+	toolbar2.update() 
+	canvas2.get_tk_widget().pack()
+
+	fig3 = Figure(figsize=(5,4), dpi=100)
+	ax3 = fig3.add_subplot(111)
+	ax3.plot(time,output[0], label="Experimental")
+	ax3.plot(time,output[1], label="Simulated")
+	ax3.set_xlabel("Time")
+	ax3.set_ylabel("Concentration")
+	ax3.legend()
+
+	canvas3 = FigureCanvasTkAgg(fig3, master = tab3)
+	canvas3.draw()
+	canvas3.get_tk_widget().pack()
+	toolbar3 = NavigationToolbar2Tk(canvas3, tab3)
+	toolbar3.update() 
+	canvas3.get_tk_widget().pack()
+	window.mainloop()
+
 	
 editButton = Button(root, text = "Forward modelling", command = openEditWindow)
 editButton.pack(expand = YES)
