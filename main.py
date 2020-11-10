@@ -6,14 +6,17 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from PIL import Image, ImageTk
 from tkinter import ttk 
+from ttkthemes import themed_tk as tk
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_gtk3agg import FigureCanvas
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,  
 NavigationToolbar2Tk) 
 
-
 global edit
-root = Tk()
+
+root = tk.ThemedTk()
+root.get_themes()# Returns a list of all themes that can be set
+root.set_theme("radiance")
 root.title('LAP - GUI for Fortran')
 root.geometry("450x420")
 
@@ -50,7 +53,12 @@ def openHelpWindow():
 
 
 def openEditWindow():
-	editWindow = Tk()
+
+	editWindow = tk.ThemedTk()
+	editWindow.get_themes()# Returns a list of all themes that can be set
+	editWindow.set_theme("radiance")
+
+	# editWindow = Tk()
 	editWindow.title('Forward modelling')
 	editWindow.geometry("450x600")
 	
