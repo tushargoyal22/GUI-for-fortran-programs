@@ -58,7 +58,6 @@ def openEditWindow():
 	editWindow.get_themes()# Returns a list of all themes that can be set
 	editWindow.set_theme("radiance")
 
-	# editWindow = Tk()
 	editWindow.title('Forward modelling')
 	editWindow.geometry("450x600")
 	
@@ -85,9 +84,31 @@ def openEditWindow():
 
 
 def openParameterEstimationWindow():
-	parameterEstimationWindow = Tk()
+	parameterEstimationWindow = tk.ThemedTk()
+	parameterEstimationWindow.get_themes()# Returns a list of all themes that can be set
+	parameterEstimationWindow.set_theme("radiance")
+
 	parameterEstimationWindow.title('Parameter estimation')
-	parameterEstimationWindow.geometry("450x420")
+	parameterEstimationWindow.geometry("450x600")
+
+	global my_text
+	my_text = Text(parameterEstimationWindow, width=40, height=10, font=("Helvetica", 16))
+	my_text.pack(pady=20)
+
+	open_button = Button(parameterEstimationWindow, text="Open dat File", command=open_txt)
+	open_button.pack(pady=15)
+
+	save_button = Button(parameterEstimationWindow, text="Save File", command=save_txt)
+	save_button.pack(pady=15)
+
+	run_button = Button(parameterEstimationWindow, text="Run", command=run_txt)
+	run_button.pack(pady=15)
+
+	# PlotButton = Button(editWindow, text = "Plot", command = GraphFunction)
+	# PlotButton.pack(pady=15)
+
+	helpButton = Button(parameterEstimationWindow, text = "Help", command = openHelpWindow)
+	helpButton.pack(pady=15)
 
 	parameterEstimationWindow.mainloop()
 
