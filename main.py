@@ -53,12 +53,11 @@ def openHelpWindow():
 	img = ImageTk.PhotoImage(img)
 	panel = Label(helpWindow, image=img)
 	panel.pack(side = TOP, anchor = NE, fill = "both")
-
 	helpWindow.mainloop()
 
 
-
 def guessSave():
+	file_name = 'in_1.dat'
 	text_file = open(file_name, 'r') 
 	content = text_file.read()
 	text_file.close()
@@ -84,6 +83,29 @@ def guessSave():
 	newFile.close()
 
 
+	cnt = int(content[5])
+	print(cnt)
+
+	newFile = open("output.ins", 'w') 
+	newFile.write("ptf #\n")
+
+	for i in range(1,cnt+1):
+		newFile.write("l1 (o"+str(i)+")19:26")
+		newFile.write("\n")
+	newFile.close()
+    # (oi) is the observation point and it should go up to max. observation time steps
+
+
+
+	newFile = open("measure.obf", 'w') 
+# Saving experimental data from in_1.dat in measure.obf corresponding to observation
+# number
+	for i in range(6,len(content)-1):
+		currobn = i-5
+		newFile.write("o"+str(currobn)+" "+content[i])
+		newFile.write("\n")
+
+	newFile.close()
 
 
 def openGuessWindow():
@@ -104,11 +126,6 @@ def openGuessWindow():
 	Button(window, text="Save", command = guessSave).grid(row = 12, column = 1)
 
 	window.mainloop()
-
-
-
-
-
 
 
 def openWindow(header, isPE = False):
@@ -143,8 +160,6 @@ def openWindow(header, isPE = False):
 		guessButton.pack(expand = YES)
 
 	window.mainloop()
-
-
 
 
 
@@ -210,8 +225,6 @@ def GraphFunction():
 	toolbar3.update() 
 	canvas3.get_tk_widget().pack()
 	window.mainloop()
-
-
 
 
 	
