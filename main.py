@@ -6,14 +6,24 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from PIL import Image, ImageTk
 from tkinter import ttk 
+from ttkthemes import themed_tk as tk
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_gtk3agg import FigureCanvas
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,  
-NavigationToolbar2Tk) 
+NavigationToolbar2Tk)
+
 global edit
-root = Tk()
+
+root = tk.ThemedTk()
+root.get_themes()# Returns a list of all themes that can be set
+root.set_theme("radiance")
 root.title('LAP - GUI for Fortran')
 root.geometry("450x420")
+
+
+valuesNames = ["qs", "qf", "omegaim", "omegasf", "alpha"]
+entries = []
+
 
 def open_txt():
 	global file_name
@@ -42,44 +52,115 @@ def openHelpWindow():
 	img = ImageTk.PhotoImage(img)
 	panel = Label(helpWindow, image=img)
 	panel.pack(side = TOP, anchor = NE, fill = "both")
-
 	helpWindow.mainloop()
 
 
+def guessSave():
+	file_name = 'in_1.dat'
+	text_file = open(file_name, 'r') 
+	content = text_file.read()
+	text_file.close()
+	content = content.split('\n')
 
-def openEditWindow():
-	editWindow = Tk()
-	editWindow.title('Forward modelling')
-	editWindow.geometry("450x600")
+	for i in range(5):
+		if entries[i].get() != "":
+			content[i] = "#" + valuesNames[i] + " #"
+
+	newFile = open("in_1.tpl", 'w') 
+	newFile.write("ptf #\n")
+	for line in content:
+		newFile.write(line)
+		newFile.write("\n")
+	newFile.close()
+
+
+	newFile = open("in_1.par", 'w') 
+	newFile.write("single point\n")
+	for i in range(5):
+		if entries[i].get() != "":
+			newFile.write(valuesNames[i] + " " + entries[i].get() + " 1.0 1.0\n")
+	newFile.close()
+
+
+	cnt = int(content[5])
+	print(cnt)
+
+	newFile = open("output.ins", 'w') 
+	newFile.write("ptf #\n")
+
+	for i in range(1,cnt+1):
+		newFile.write("l1 (o"+str(i)+")19:26")
+		newFile.write("\n")
+	newFile.close()
+    # (oi) is the observation point and it should go up to max. observation time steps
+
+
+
+	newFile = open("measure.obf", 'w') 
+# Saving experimental data from in_1.dat in measure.obf corresponding to observation
+# number
+	for i in range(6,len(content)-1):
+		currobn = i-5
+		newFile.write("o"+str(currobn)+" "+content[i])
+		newFile.write("\n")
+
+	newFile.close()
+
+
+def openGuessWindow():
+	window = Tk()
+	window.title("Guess Window")
+	window.geometry("300x350")
+
+	global entries
+	entries = []
+	Label(window, text = " ").grid(row = 0)
+	for i in range(5):
+		Label(window, text = valuesNames[i]).grid(row = 2*i + 1)
+		entry = Entry(window)
+		entry.grid(row = 2*i + 1, column = 1)
+		entries.append(entry)
+		Label(window, text = " ").grid(row = 2*i + 2)
+
+	Button(window, text="Save", command = guessSave).grid(row = 12, column = 1)
+
+	window.mainloop()
+
+
+def openWindow(header, isPE = False):
+	window = tk.ThemedTk()
+	window.get_themes()# Returns a list of all themes that can be set
+	window.set_theme("radiance")
+
+	window.title(header)
+	window.geometry("450x550")
 	
 	global my_text
-	my_text = Text(editWindow, width=40, height=10, font=("Helvetica", 16))
-	my_text.pack(pady=20)
+	my_text = Text(window, width=40, height=10, font=("Helvetica", 16))
+	my_text.pack(expand = YES)
 
-	open_button = Button(editWindow, text="Open dat File", command=open_txt)
-	open_button.pack(pady=15)
+	open_button = Button(window, text="Open dat File", command=open_txt)
+	open_button.pack(expand = YES)
 
-	save_button = Button(editWindow, text="Save File", command=save_txt)
-	save_button.pack(pady=15)
+	save_button = Button(window, text="Save File", command=save_txt)
+	save_button.pack(expand = YES)
 
-	run_button = Button(editWindow, text="Run", command=run_txt)
-	run_button.pack(pady=15)
+	run_button = Button(window, text="Run", command=run_txt)
+	run_button.pack(expand = YES)
 
-	PlotButton = Button(editWindow, text = "Plot", command = GraphFunction)
-	PlotButton.pack(pady=15)
+	PlotButton = Button(window, text = "Plot", command = GraphFunction)
+	PlotButton.pack(expand = YES)
 
-	helpButton = Button(editWindow, text = "Help", command = openHelpWindow)
-	helpButton.pack(pady=15)
+	helpButton = Button(window, text = "Help", command = openHelpWindow)
+	helpButton.pack(expand = YES)
 
-	editWindow.mainloop()
+	if isPE : 
+		guessButton = Button(window, text = "Guess Window", command = openGuessWindow)
+		guessButton.pack(expand = YES)
+
+	window.mainloop()
 
 
-def openParameterEstimationWindow():
-	parameterEstimationWindow = Tk()
-	parameterEstimationWindow.title('Parameter estimation')
-	parameterEstimationWindow.geometry("450x420")
-
-	parameterEstimationWindow.mainloop()
 
 def GraphFunction():
 	window = Tk() 
@@ -144,11 +225,12 @@ def GraphFunction():
 	canvas3.get_tk_widget().pack()
 	window.mainloop()
 
+
 	
-editButton = Button(root, text = "Forward modelling", command = openEditWindow)
+editButton = Button(root, text = "Forward modelling", command = lambda : openWindow("Forward modelling"))
 editButton.pack(expand = YES)
 
-parameterEstimationButton = Button(root, text = "Parameter estimation", command = openParameterEstimationWindow)
+parameterEstimationButton = Button(root, text = "Parameter estimation", command = lambda : openWindow("Parameter estimation", True))
 parameterEstimationButton.pack(expand = YES)
 
 root.mainloop()
