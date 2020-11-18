@@ -9,8 +9,8 @@
 
 |   | Name | Roll No.  |
 |--------|--------|--------|
-|A| Ashutosh Sharma  | B18010  |
-|B| Tushar Goyal | B18030  |
+|A| Tushar Goyal | B18030  |
+|B| Ashutosh Sharma  | B18010 |
 |C| Anuj Goel    | B18161  |
 |D|  Inderjeet | B18058  |
 |E| Keshav Garg  | B18119  |
@@ -20,3 +20,6 @@
 1. Install `tkinter` : `sudo apt install python3-tk`
 2. Install required dependencies : `pip3 install -r requirements.txt`
 3. Run main.py : `python3 main.py`
+
+## Documentation
+Refer to [wiki](https://github.com/tushargoyal22/GUI-for-fortran-programs/wiki) page for further details.
