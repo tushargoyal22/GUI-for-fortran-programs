@@ -66,7 +66,7 @@ def guessSave():
 
 	for i in range(5):
 		if entries[i].get() != "":
-			content[i] = "#" + valuesNames[i] + " #"
+			content[i] = "# " + valuesNames[i] + " #"
 
 	newFile = open("in_1.tpl", 'w') 
 	newFile.write("ptf #\n")
