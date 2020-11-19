@@ -10,9 +10,8 @@ from PIL import Image, ImageTk
 from tkinter import ttk 
 from ttkthemes import themed_tk as tk
 from matplotlib.figure import Figure
-# from matplotlib.backends.backend_gtk3agg import FigureCanvas
-# from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,  
-# NavigationToolbar2Tk)
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,  
+NavigationToolbar2Tk)
 
 global edit
 change = 0
@@ -171,7 +170,7 @@ def openWindow(header, isPE = False):
 	run_button = Button(window, text="Run", command=run_txt)
 	run_button.pack(expand = YES)
 
-	PlotButton = Button(window, text = "Plot", command = plt_txt)
+	PlotButton = Button(window, text = "Plot", command = GraphFunction)
 	PlotButton.pack(expand = YES)
 
 	helpButton = Button(window, text = "Help", command = openHelpWindow)
@@ -353,33 +352,6 @@ def GraphFunction():
 	toolbar3.update() 
 	canvas3.get_tk_widget().pack()
 	window.mainloop()
-
-def plt_txt():
-	edit = Toplevel()
-	edit.title('Graph')
-	edit.geometry("500x500")
-	img =Image.open("download.png")
-	img=img.resize((500,500),Image.ANTIALIAS)
-	img= ImageTk.PhotoImage(img)
-	panel = Label(edit, image=img)
-	panel.pack(side=TOP,anchor=NE,fill="both")
-	output = pd.read_csv("output.dat", delimiter=r"\s+",header=None)
-	time = pd.read_csv("in_2.dat", header = None)
-	time = time[2:]
-	plt.plot(time,output[0], label="Experimental")	
-	plt.plot(time,output[1], label="Simulated")
-	plt.xlabel("Time")
-	plt.ylabel("Concentration")
-	plt.legend()
-	plt.title("Concentration vs Time graph")
-	plt.savefig('graph.png',dpi=100)
-	img2 =Image.open("graph.png")
-	img2=img2.resize((500,500),Image.ANTIALIAS)
-	img2= ImageTk.PhotoImage(img2)
-	panel.config(image=img2)
-	panel.image = img2
-	edit.mainloop()
-
 	
 editButton = Button(root, text = "Forward modelling", command = lambda : openWindow("Forward modelling"))
 editButton.pack(expand = YES)
