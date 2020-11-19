@@ -109,6 +109,27 @@ def guessSave():
 	newFile.close()
 
 
+	os.system('pestgen test in_1.par measure.obf')
+	pstfile = open("test.pst")
+	string_list = my_file.readlines()
+	length = len(string_list)
+
+
+	string_list[length-2] = "output.ins  output.dat"
+	string_list[length-3] = "in_1.tpl  in_1.dat"
+	string_list[length-5] = "test"
+
+	pstfile = open("test.pst","w")
+	new_file_contents = "".join(string_list)
+	pstfile.write(new_file_contents)
+	pstfile.close()
+
+
+	os.system('pestchek test')
+	os.system('pest test')
+
+
+
 def openGuessWindow():
 	window = Tk()
 	window.title("Guess Window")
