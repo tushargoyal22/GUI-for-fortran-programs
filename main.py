@@ -2,7 +2,9 @@ from tkinter import *
 from tkinter import filedialog
 from tkinter import font
 import os
+import six
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image, ImageTk
 from tkinter import ttk 
@@ -133,7 +135,7 @@ def openWindow(header, isPE = False):
 	window.set_theme("radiance")
 
 	window.title(header)
-	window.geometry("450x550")
+	window.geometry("450x600")
 	
 	global my_text
 	my_text = Text(window, width=40, height=10, font=("Helvetica", 16))
@@ -158,9 +160,115 @@ def openWindow(header, isPE = False):
 		guessButton = Button(window, text = "Guess Window", command = openGuessWindow)
 		guessButton.pack(expand = YES)
 
+		TableButton = Button(window, text = "K-L information statistics", command = tableKLStatistics)
+		TableButton.pack(expand = YES)
+
+		TableButton1 = Button(window, text = "Otimisation Results", command = tableParameterEstimation)
+		TableButton1.pack(expand = YES)
+
+
+	window.mainloop()
+def render_mpl_table(data, col_width=3.0, row_height=0.75, font_size=14,
+                     header_color='#40466e', row_colors=['#f1f1f2', 'w'], edge_color='w',
+                     bbox=[0, 0, 1, 1], header_columns=0,
+                     ax=None, **kwargs):
+    if ax is None:
+        size = (np.array(data.shape[::-1]) + np.array([0, 1])) * np.array([col_width, row_height])
+        fig, ax = plt.subplots(figsize=size)
+        ax.axis('off')
+
+    mpl_table = ax.table(cellText=data.values, bbox=bbox, colLabels=data.columns, **kwargs)
+
+    mpl_table.auto_set_font_size(False)
+    mpl_table.set_fontsize(font_size)
+
+    for k, cell in  six.iteritems(mpl_table._cells):
+        cell.set_edgecolor(edge_color)
+        if k[0] == 0 or k[1] < header_columns:
+            cell.set_text_props(weight='bold', color='w')
+            cell.set_facecolor(header_color)
+        else:
+            cell.set_facecolor(row_colors[k[0]%len(row_colors) ])
+    ax = plt.gca()
+    ax.get_xaxis().set_visible(False)
+    ax.get_yaxis().set_visible(False)
+    plt.box(on=None)
+    plt.draw()
+    fig = plt.gcf()
+    plt.savefig('tableKLStatistics.png')
+
+def tableKLStatistics():
+	window = Toplevel()
+	window.title('K-L information statistics')
+	window.geometry("500x500")
+	img =Image.open("download.png")
+	img=img.resize((500,500),Image.ANTIALIAS)
+	img= ImageTk.PhotoImage(img)
+	panel = Label(window, image=img)
+	panel.pack(side=TOP,anchor=NE,fill="both")
+	df = pd.DataFrame()
+	f = open("test.rec")
+	lines = []
+	col1 = []
+	col2 = []
+	for line in f: 
+		lines.append(line)
+	start = lines.index('K-L information statistics ----->\n')
+	for i in range(start + 3, start + 7):
+		col = lines[i].split('  ')
+		col1.append(col[1])	
+		col2.append(col[3])
+	df['Name'] = col1
+	df['Value'] = col2
+	render_mpl_table(df, header_columns=0, col_width=2.0)
+	
+	img2 =Image.open("tableKLStatistics.png")
+	img2=img2.resize((500,500),Image.ANTIALIAS)
+	img2= ImageTk.PhotoImage(img2)
+	panel.config(image=img2)
+	panel.image = img2
 	window.mainloop()
 
+def tableParameterEstimation():
+	window = Toplevel()
+	window.title('OPTIMISATION RESULTS')
+	window.geometry("1000x500")
+	img =Image.open("download.png")
+	img=img.resize((500,500),Image.ANTIALIAS)
+	img= ImageTk.PhotoImage(img)
+	panel = Label(window, image=img)
+	panel.pack(side=TOP,anchor=NE,fill="both")
+	df = pd.DataFrame()
+	f = open("test.rec")
+	lines = []
+	col1 = []
+	col2 = []
+	col3 = []
+	col4 = []
 
+	for line in f: 
+		lines.append(line)
+	start = lines.index('                            OPTIMISATION RESULTS\n')
+	for i in range(start + 7, start + 11):
+		col = lines[i].split()
+		col1.append(col[0])
+		col2.append(col[1])
+		col3.append(col[2])
+		col4.append(col[3])
+
+	df['Parameter'] = col1
+	df['Estimated Value'] = col2
+	df['Lower Limit'] = col3
+	df['Upper Limit'] = col4
+
+	render_mpl_table(df, header_columns=0, col_width=3.0)
+	
+	img2 =Image.open("tableKLStatistics.png")
+	img2=img2.resize((1000,500),Image.ANTIALIAS)
+	img2= ImageTk.PhotoImage(img2)
+	panel.config(image=img2)
+	panel.image = img2
+	window.mainloop()
 
 def GraphFunction():
 	window = Tk() 

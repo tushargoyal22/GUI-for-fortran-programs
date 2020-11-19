@@ -1,0 +1,476 @@
+
+                       PEST RUN RECORD: CASE test
+
+
+PEST Version: 17.1
+
+
+PEST run mode:-
+
+   Parameter estimation mode
+
+
+Case dimensions:-
+
+   Number of parameters                           :     4
+   Number of adjustable parameters                :     4
+   Number of parameter groups                     :     4
+   Number of observations                         :    43
+   Number of prior estimates                      :     0
+
+
+Model command line(s):-
+
+   test
+
+
+Jacobian command line:-
+
+   na
+
+
+Model interface files:-
+
+   Templates:
+      in_1.tpl
+   for model input files:
+      in_1.dat
+
+   (Parameter values written using single precision protocol.)
+   (Decimal point always included.)
+
+   Instruction files:
+      output.ins
+   for reading model output files:
+      output.dat
+
+
+PEST-to-model message file:-
+
+   na
+
+
+Derivatives calculation:-
+
+Param        Increment   Increment   Increment   Forward or   Multiplier  Method
+group        type                    low bound   central      (central)   (central)
+qsl          relative    1.0000E-02   none         switch       2.000     parabolic
+alphaim      relative    1.0000E-02   none         switch       2.000     parabolic
+alphasf      relative    1.0000E-02   none         switch       2.000     parabolic
+alpha        relative    1.0000E-02   none         switch       2.000     parabolic
+
+
+Parameter definitions:-
+
+Name         Trans-            Change       Initial        Lower          Upper
+             formation         limit        value          bound          bound
+qsl          none              relative   0.364000      -1.000000E+10   1.000000E+10
+alphaim      none              relative   5.000000E-05  -1.000000E+10   1.000000E+10
+alphasf      none              relative   1.000000E-02  -1.000000E+10   1.000000E+10
+alpha        none              relative   0.400000      -1.000000E+10   1.000000E+10
+
+Name         Group          Scale         Offset        Model command number
+qsl          qsl           1.00000        0.00000            1
+alphaim      alphaim       1.00000        0.00000            1
+alphasf      alphasf       1.00000        0.00000            1
+alpha        alpha         1.00000        0.00000            1
+
+
+Prior information:-
+
+   No prior information supplied
+
+
+Observations:-
+
+Observation name        Observation       Weight       Group
+ o1                     7.000000E-03      1.000       obsgroup    
+ o2                     4.600000E-02      1.000       obsgroup    
+ o3                     7.500000E-02      1.000       obsgroup    
+ o4                     0.117000          1.000       obsgroup    
+ o5                     0.154000          1.000       obsgroup    
+ o6                     0.174000          1.000       obsgroup    
+ o7                     0.211000          1.000       obsgroup    
+ o8                     0.240000          1.000       obsgroup    
+ o9                     0.264000          1.000       obsgroup    
+ o10                    0.288000          1.000       obsgroup    
+ o11                    0.321000          1.000       obsgroup    
+ o12                    0.351000          1.000       obsgroup    
+ o13                    0.376000          1.000       obsgroup    
+ o14                    0.412000          1.000       obsgroup    
+ o15                    0.433000          1.000       obsgroup    
+ o16                    0.486000          1.000       obsgroup    
+ o17                    0.516000          1.000       obsgroup    
+ o18                    0.563000          1.000       obsgroup    
+ o19                    0.610000          1.000       obsgroup    
+ o20                    0.656000          1.000       obsgroup    
+ o21                    0.699000          1.000       obsgroup    
+ o22                    0.738000          1.000       obsgroup    
+ o23                    0.796000          1.000       obsgroup    
+ o24                    0.830000          1.000       obsgroup    
+ o25                    0.850000          1.000       obsgroup    
+ o26                    0.885000          1.000       obsgroup    
+ o27                    0.915000          1.000       obsgroup    
+ o28                    0.934000          1.000       obsgroup    
+ o29                    0.935000          1.000       obsgroup    
+ o30                    0.964000          1.000       obsgroup    
+ o31                    0.977000          1.000       obsgroup    
+ o32                    0.987000          1.000       obsgroup    
+ o33                    0.979000          1.000       obsgroup    
+ o34                    0.982000          1.000       obsgroup    
+ o35                    0.999000          1.000       obsgroup    
+ o36                    0.989000          1.000       obsgroup    
+ o37                     1.01500          1.000       obsgroup    
+ o38                     1.00500          1.000       obsgroup    
+ o39                     1.00600          1.000       obsgroup    
+ o40                     1.01100          1.000       obsgroup    
+ o41                     1.00500          1.000       obsgroup    
+ o42                    0.997000          1.000       obsgroup    
+ o43                    0.992000          1.000       obsgroup    
+
+
+Control settings:-
+
+   Initial lambda                                               :  5.0000    
+   Lambda adjustment factor                                     :  2.0000    
+   Sufficient new/old phi ratio per optimisation iteration      : 0.30000    
+   Limiting relative phi reduction between lambdas              : 3.00000E-02
+   Maximum trial lambdas per iteration                          :  10
+   Forgive model run failure during lamda testing               : no
+   Forgive model run failure during Jacobian runs               : no
+
+   Perform Broyden's update of Jacobian matrix                  : no
+   Undertake observation re-referencing                         : no
+
+   Maximum  factor  parameter change (factor-limited changes)   : na
+   Maximum relative parameter change (relative-limited changes) :  3.0000
+   Fraction of initial parameter values used in computing
+   change limit for near-zero parameters                        : 1.00000E-03
+   Allow bending of parameter upgrade vector                    : no
+   Allow parameters to stick to their bounds                    : no
+
+   Relative phi reduction below which to begin use of
+   central derivatives                                          : 0.10000             
+   Iteration at which to first consider derivatives switch      :   1
+
+   Relative phi reduction indicating convergence                : 0.10000E-01
+   Number of phi values required within this range              :   3
+   Maximum number of consecutive failures to lower phi          :   3
+   Minimal relative parameter change indicating convergence     : 0.10000E-01
+   Number of consecutive iterations with minimal param change   :   3
+   Maximum number of optimisation iterations                    :  30
+
+   Attempt automatic user intervention                          : no
+
+   Attempt reuse of parameter sensitivities                     : no
+
+   Scale parameters by their bounds                             : no
+
+
+File saving options: -
+
+   Save best JCO file                                           : yes
+   Save multiple JCO files                                      : no
+   Save multiple REI files                                      : no
+   Save multiple PAR files                                      : no
+
+
+                            OPTIMISATION RECORD
+
+
+INITIAL CONDITIONS: 
+   Sum of squared weighted residuals (ie phi) =  0.78441    
+
+      Current parameter values
+      qsl             0.364000    
+      alphaim         5.000000E-05
+      alphasf         1.000000E-02
+      alpha           0.400000    
+
+
+OPTIMISATION ITERATION NO.        : 1
+   Model calls so far             : 1
+   Starting phi for this iteration:  0.78441    
+
+       Lambda =   5.0000     ----->
+          Phi =  3.85589E-02  (  0.049 of starting phi)
+
+   No more lambdas: phi is less than 0.3000 of starting phi
+   Lowest phi this iteration:  3.85589E-02
+
+      Current parameter values                 Previous parameter values
+      qsl             0.233498                 qsl              0.364000    
+      alphaim         1.857238E-04             alphaim          5.000000E-05
+      alphasf         2.004466E-02             alphasf          1.000000E-02
+      alpha           0.453765                 alpha            0.400000    
+   Maximum relative change:  2.714     ["alphaim"]
+
+
+OPTIMISATION ITERATION NO.        : 2
+   Model calls so far             : 6
+   Starting phi for this iteration:  3.85589E-02
+
+   Parameter "alphaim" has no effect on observations.
+
+       Lambda =   2.5000     ----->
+          Phi =  2.19455E-02  (  0.569 of starting phi)
+
+       Lambda =   1.2500     ----->
+          Phi =  2.24320E-02  (  0.582 of starting phi)
+
+       Lambda =   5.0000     ----->
+          Phi =  2.16690E-02  (  0.562 of starting phi)
+
+   No more lambdas: relative phi reduction between lambdas less than 0.0300
+   Lowest phi this iteration:  2.16690E-02
+
+      Current parameter values                 Previous parameter values
+      qsl             0.267627                 qsl              0.233498    
+      alphaim         1.857238E-04             alphaim          1.857238E-04
+      alphasf         6.321475E-03             alphasf          2.004466E-02
+      alpha           0.430371                 alpha            0.453765    
+   Maximum relative change: 0.6846     ["alphasf"]
+
+
+OPTIMISATION ITERATION NO.        : 3
+   Model calls so far             : 13
+   Starting phi for this iteration:  2.16690E-02
+
+       Lambda =   5.0000     ----->
+          Phi =  9.59787E-03  (  0.443 of starting phi)
+
+       Lambda =   2.5000     ----->
+          Phi =  9.61169E-03  (  0.444 of starting phi)
+
+       Lambda =   10.000     ----->
+          Phi =  9.59730E-03  (  0.443 of starting phi)
+
+   No more lambdas: relative phi reduction between lambdas less than 0.0300
+   Lowest phi this iteration:  9.59730E-03
+
+      Current parameter values                 Previous parameter values
+      qsl             0.263327                 qsl              0.267627    
+      alphaim        -3.014080E-05             alphaim          1.857238E-04
+      alphasf         8.844564E-03             alphasf          6.321475E-03
+      alpha           0.431161                 alpha            0.430371    
+   Maximum relative change:  1.162     ["alphaim"]
+
+
+OPTIMISATION ITERATION NO.        : 4
+   Model calls so far             : 20
+   Starting phi for this iteration:  9.59730E-03
+
+       Lambda =   10.000     ----->
+          Phi =  9.22039E-03  (  0.961 of starting phi)
+
+       Lambda =   5.0000     ----->
+          Phi =  9.22004E-03  (  0.961 of starting phi)
+
+   No more lambdas: relative phi reduction between lambdas less than 0.0300
+   Lowest phi this iteration:  9.22004E-03
+   Relative phi reduction between optimisation iterations less than 0.1000
+   Switch to higher order derivatives calculation
+
+      Current parameter values                 Previous parameter values
+      qsl             0.263246                 qsl              0.263327    
+      alphaim        -1.205630E-04             alphaim         -3.014080E-05
+      alphasf         8.869438E-03             alphasf          8.844564E-03
+      alpha           0.431108                 alpha            0.431161    
+   Maximum relative change:  3.000     ["alphaim"]
+
+
+OPTIMISATION ITERATION NO.        : 5
+   Model calls so far             : 26
+   Starting phi for this iteration:  9.22004E-03
+
+       Lambda =   2.5000     ----->
+          Phi =  9.15293E-03  (  0.993 of starting phi)
+
+       Lambda =   1.2500     ----->
+          Phi =  9.17101E-03  (  0.995 of starting phi)
+
+       Lambda =   5.0000     ----->
+          Phi =  9.16887E-03  (  0.994 of starting phi)
+
+   No more lambdas: phi rising
+   Lowest phi this iteration:  9.15293E-03
+
+      Current parameter values                 Previous parameter values
+      qsl             0.261964                 qsl              0.263246    
+      alphaim        -1.707220E-04             alphaim         -1.205630E-04
+      alphasf         9.110885E-03             alphasf          8.869438E-03
+      alpha           0.432086                 alpha            0.431108    
+   Maximum relative change: 0.4160     ["alphaim"]
+
+
+OPTIMISATION ITERATION NO.        : 6
+   Model calls so far             : 37
+   Starting phi for this iteration:  9.15293E-03
+
+       Lambda =   2.5000     ----->
+          Phi =  9.15486E-03  (  1.000 times starting phi)
+
+       Lambda =   1.2500     ----->
+          Phi =  9.15808E-03  (  1.001 times starting phi)
+
+       Lambda =   5.0000     ----->
+          Phi =  9.14422E-03  (  0.999 of starting phi)
+
+   No more lambdas: relative phi reduction between lambdas less than 0.0300
+   Lowest phi this iteration:  9.14422E-03
+
+      Current parameter values                 Previous parameter values
+      qsl             0.261646                 qsl              0.261964    
+      alphaim        -1.723260E-04             alphaim         -1.707220E-04
+      alphasf         9.198813E-03             alphasf          9.110885E-03
+      alpha           0.431451                 alpha            0.432086    
+   Maximum relative change: 9.6508E-03 ["alphasf"]
+
+   Optimisation complete: the  3 lowest phi's are within a relative distance
+                          of eachother of 1.000E-02
+   Total model calls:     48
+
+   The model has been run one final time using best parameters. 
+   Thus all model input files contain best parameter values, and model 
+   output files contain model results based on these parameters.
+
+
+                            OPTIMISATION RESULTS
+
+
+Parameters ----->
+
+Parameter        Estimated         95% percent confidence limits
+                 value             lower limit       upper limit
+ qsl            0.261646           0.253698          0.269594    
+ alphaim       -1.723260E-04      -5.938624E-04      2.492104E-04
+ alphasf        9.198813E-03       6.926382E-03      1.147124E-02
+ alpha          0.431451           0.318534          0.544368    
+
+Note: confidence limits provide only an indication of parameter uncertainty.
+      They rely on a linearity assumption which  may not extend as far in 
+      parameter space as the confidence limits themselves - see PEST manual.
+
+See file test.sen for parameter sensitivities.
+
+
+Observations ----->
+
+Observation            Measured       Calculated     Residual       Weight     Group
+                       value          value
+o1                    7.000000E-03   5.619880E-04   6.438012E-03    1.000      obsgroup    
+o2                    4.600000E-02   1.399467E-02   3.200533E-02    1.000      obsgroup    
+o3                    7.500000E-02   6.104460E-02   1.395540E-02    1.000      obsgroup    
+o4                    0.117000       0.129212      -1.221180E-02    1.000      obsgroup    
+o5                    0.154000       0.182672      -2.867170E-02    1.000      obsgroup    
+o6                    0.174000       0.218306      -4.430640E-02    1.000      obsgroup    
+o7                    0.211000       0.244996      -3.399580E-02    1.000      obsgroup    
+o8                    0.240000       0.268546      -2.854600E-02    1.000      obsgroup    
+o9                    0.264000       0.289888      -2.588830E-02    1.000      obsgroup    
+o10                   0.288000       0.312250      -2.424970E-02    1.000      obsgroup    
+o11                   0.321000       0.333781      -1.278100E-02    1.000      obsgroup    
+o12                   0.351000       0.357335      -6.334900E-03    1.000      obsgroup    
+o13                   0.376000       0.382649      -6.648500E-03    1.000      obsgroup    
+o14                   0.412000       0.410899       1.101500E-03    1.000      obsgroup    
+o15                   0.433000       0.442217      -9.216700E-03    1.000      obsgroup    
+o16                   0.486000       0.478307       7.692700E-03    1.000      obsgroup    
+o17                   0.516000       0.518467      -2.467000E-03    1.000      obsgroup    
+o18                   0.563000       0.562026       9.745000E-04    1.000      obsgroup    
+o19                   0.610000       0.608316       1.683600E-03    1.000      obsgroup    
+o20                   0.656000       0.654999       1.001100E-03    1.000      obsgroup    
+o21                   0.699000       0.698794       2.059000E-04    1.000      obsgroup    
+o22                   0.738000       0.745168      -7.168400E-03    1.000      obsgroup    
+o23                   0.796000       0.785448       1.055220E-02    1.000      obsgroup    
+o24                   0.830000       0.822080       7.920500E-03    1.000      obsgroup    
+o25                   0.850000       0.855883      -5.883400E-03    1.000      obsgroup    
+o26                   0.885000       0.884862       1.376000E-04    1.000      obsgroup    
+o27                   0.915000       0.909693       5.307300E-03    1.000      obsgroup    
+o28                   0.934000       0.929620       4.379700E-03    1.000      obsgroup    
+o29                   0.935000       0.946066      -1.106610E-02    1.000      obsgroup    
+o30                   0.964000       0.960056       3.944200E-03    1.000      obsgroup    
+o31                   0.977000       0.970392       6.608300E-03    1.000      obsgroup    
+o32                   0.987000       0.979264       7.736400E-03    1.000      obsgroup    
+o33                   0.979000       0.985963      -6.962500E-03    1.000      obsgroup    
+o34                   0.982000       0.991138      -9.138000E-03    1.000      obsgroup    
+o35                   0.999000       0.995030       3.970100E-03    1.000      obsgroup    
+o36                   0.989000       0.998130      -9.129700E-03    1.000      obsgroup    
+o37                    1.01500        1.00035       1.465400E-02    1.000      obsgroup    
+o38                    1.00500        1.00201       2.990000E-03    1.000      obsgroup    
+o39                    1.00600        1.00327       2.726000E-03    1.000      obsgroup    
+o40                    1.01100        1.00419       6.811000E-03    1.000      obsgroup    
+o41                    1.00500        1.00489       1.070000E-04    1.000      obsgroup    
+o42                   0.997000        1.00539      -8.387000E-03    1.000      obsgroup    
+o43                   0.992000        1.00574      -1.373700E-02    1.000      obsgroup    
+
+See file test.res for more details of residuals in graph-ready format.
+
+See file test.seo for composite observation sensitivities.
+
+
+Objective function ----->
+
+  Sum of squared weighted residuals (ie phi)                =  9.1442E-03
+
+
+Correlation Coefficient ----->
+
+  Correlation coefficient                                   =  0.99921    
+
+
+Analysis of residuals ----->
+
+  All residuals:-
+     Number of residuals with non-zero weight                       =    43
+     Mean value of non-zero weighted residuals                      = -3.8113E-03
+     Maximum weighted residual [observation "o2"]                   =  3.2005E-02
+     Minimum weighted residual [observation "o6"]                   = -4.4306E-02
+     Standard variance of weighted residuals                        =  2.3447E-04
+     Standard error of weighted residuals                           =  1.5312E-02
+
+     Note: the above variance was obtained by dividing the objective 
+     function by the number of system degrees of freedom (ie. number of 
+     observations with non-zero weight plus number of prior information 
+     articles with non-zero weight minus the number of adjustable parameters.)
+     If the degrees of freedom is negative the divisor becomes 
+     the number of observations with non-zero weight plus the number of 
+     prior information items with non-zero weight.
+
+
+K-L information statistics ----->
+
+
+  AIC   =  -353.6009    
+  AICC  =  -351.9792    
+  BIC   =  -344.7949    
+  KIC   =  -320.1371    
+
+Parameter covariance matrix ----->
+
+                 qsl        alphaim      alphasf       alpha    
+qsl            1.5433E-05   2.5164E-07  -3.3823E-06   4.0724E-05
+alphaim        2.5164E-07   4.3415E-08   4.6237E-08  -6.2017E-06
+alphasf       -3.3823E-06   4.6237E-08   1.2617E-06  -4.2769E-05
+alpha          4.0724E-05  -6.2017E-06  -4.2769E-05   3.1152E-03
+
+
+Parameter correlation coefficient matrix ----->
+
+                 qsl        alphaim      alphasf       alpha    
+qsl             1.000       0.3074      -0.7665       0.1857    
+alphaim        0.3074        1.000       0.1976      -0.5333    
+alphasf       -0.7665       0.1976        1.000      -0.6822    
+alpha          0.1857      -0.5333      -0.6822        1.000    
+
+
+Normalized eigenvectors of parameter covariance matrix ----->
+
+              Vector_1     Vector_2     Vector_3     Vector_4   
+qsl           -5.9283E-02  -0.1794      -0.9819      -1.3145E-02
+alphaim        0.9786      -0.2047      -2.1700E-02   1.9889E-03
+alphasf       -0.1972      -0.9622       0.1875       1.3741E-02
+alpha          1.6158E-05  -1.1272E-02   1.5444E-02  -0.9998    
+
+
+Eigenvalues ----->
+
+               1.8751E-08   1.3977E-07   1.5444E-05   3.1163E-03
