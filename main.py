@@ -88,7 +88,7 @@ def guessSave():
 	print(cnt)
 
 	newFile = open("output.ins", 'w') 
-	newFile.write("ptf #\n")
+	newFile.write("pif #\n")
 
 	for i in range(1,cnt+1):
 		newFile.write("l1 (o"+str(i)+")19:26")
