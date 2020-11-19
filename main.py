@@ -10,12 +10,12 @@ from PIL import Image, ImageTk
 from tkinter import ttk 
 from ttkthemes import themed_tk as tk
 from matplotlib.figure import Figure
-from matplotlib.backends.backend_gtk3agg import FigureCanvas
-from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,  
-NavigationToolbar2Tk)
+# from matplotlib.backends.backend_gtk3agg import FigureCanvas
+# from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,  
+# NavigationToolbar2Tk)
 
 global edit
-
+change = 0
 root = tk.ThemedTk()
 root.get_themes()# Returns a list of all themes that can be set
 root.set_theme("radiance")
@@ -78,8 +78,10 @@ def guessSave():
 
 	newFile = open("in_1.par", 'w') 
 	newFile.write("single point\n")
+	global change
 	for i in range(5):
 		if entries[i].get() != "":
+			change = change + 1
 			newFile.write(valuesNames[i] + " " + entries[i].get() + " 1.0 1.0\n")
 	newFile.close()
 
@@ -107,17 +109,15 @@ def guessSave():
 		newFile.write("\n")
 
 	newFile.close()
-
-
 	os.system('pestgen test in_1.par measure.obf')
 	pstfile = open("test.pst")
-	string_list = my_file.readlines()
+	string_list = pstfile.readlines()
 	length = len(string_list)
 
-
-	string_list[length-2] = "output.ins  output.dat"
-	string_list[length-3] = "in_1.tpl  in_1.dat"
-	string_list[length-5] = "test"
+	print(string_list[length-1], string_list[length-2], string_list[length-3], string_list[length-4], string_list[length-5], string_list[length-6])
+	string_list[length-2] = "output.ins  output.dat\n"
+	string_list[length-3] = "in_1.tpl  in_1.dat\n"
+	string_list[length-5] = "test\n"
 
 	pstfile = open("test.pst","w")
 	new_file_contents = "".join(string_list)
@@ -171,7 +171,7 @@ def openWindow(header, isPE = False):
 	run_button = Button(window, text="Run", command=run_txt)
 	run_button.pack(expand = YES)
 
-	PlotButton = Button(window, text = "Plot", command = GraphFunction)
+	PlotButton = Button(window, text = "Plot", command = plt_txt)
 	PlotButton.pack(expand = YES)
 
 	helpButton = Button(window, text = "Help", command = openHelpWindow)
@@ -270,7 +270,7 @@ def tableParameterEstimation():
 	for line in f: 
 		lines.append(line)
 	start = lines.index('                            OPTIMISATION RESULTS\n')
-	for i in range(start + 7, start + 11):
+	for i in range(start + 7, start + 7 + change):
 		col = lines[i].split()
 		col1.append(col[0])
 		col2.append(col[1])
@@ -354,6 +354,31 @@ def GraphFunction():
 	canvas3.get_tk_widget().pack()
 	window.mainloop()
 
+def plt_txt():
+	edit = Toplevel()
+	edit.title('Graph')
+	edit.geometry("500x500")
+	img =Image.open("download.png")
+	img=img.resize((500,500),Image.ANTIALIAS)
+	img= ImageTk.PhotoImage(img)
+	panel = Label(edit, image=img)
+	panel.pack(side=TOP,anchor=NE,fill="both")
+	output = pd.read_csv("output.dat", delimiter=r"\s+",header=None)
+	time = pd.read_csv("in_2.dat", header = None)
+	time = time[2:]
+	plt.plot(time,output[0], label="Experimental")	
+	plt.plot(time,output[1], label="Simulated")
+	plt.xlabel("Time")
+	plt.ylabel("Concentration")
+	plt.legend()
+	plt.title("Concentration vs Time graph")
+	plt.savefig('graph.png',dpi=100)
+	img2 =Image.open("graph.png")
+	img2=img2.resize((500,500),Image.ANTIALIAS)
+	img2= ImageTk.PhotoImage(img2)
+	panel.config(image=img2)
+	panel.image = img2
+	edit.mainloop()
 
 	
 editButton = Button(root, text = "Forward modelling", command = lambda : openWindow("Forward modelling"))
