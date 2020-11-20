@@ -170,8 +170,6 @@ def openWindow(header, isPE = False):
 	run_button = Button(window, text="Run", command=run_txt)
 	run_button.pack(expand = YES)
 
-	PlotButton = Button(window, text = "Plot", command = GraphFunction)
-	PlotButton.pack(expand = YES)
 
 	helpButton = Button(window, text = "Help", command = openHelpWindow)
 	helpButton.pack(expand = YES)
@@ -185,6 +183,9 @@ def openWindow(header, isPE = False):
 
 		TableButton1 = Button(window, text = "Otimisation Results", command = tableParameterEstimation)
 		TableButton1.pack(expand = YES)
+
+	PlotButton = Button(window, text = "Plot", command = GraphFunction)
+	PlotButton.pack(expand = YES)
 
 
 	window.mainloop()
