@@ -254,19 +254,10 @@ def openWindow(header, isPE = False):
 		TableButton = Button(window, text = "K-L information statistics", command = tableKLStatistics)
 		TableButton.grid(row = rowNo, column = 1)
 
-		TableButton1 = Button(window, text = "Otimisation Results", command = tableParameterEstimation)
-		TableButton1.grid(rowNo = rowNo, column = 2)
-
-	
-
+		TableButton1 = Button(window, text = "Optimisation Results", command = tableParameterEstimation)
+		TableButton1.grid(row = rowNo, column = 2)
 
 	window.mainloop()
-
-
-
-
-
-
 
 
 def render_mpl_table(data, col_width=3.0, row_height=0.75, font_size=14,
