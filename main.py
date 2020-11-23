@@ -379,12 +379,25 @@ def tableParameterEstimation():
 	panel.image = img2
 	window.mainloop()
 
+#logo display
+image = Image.open("./logo.png")
+image = image.resize((round(image.size[0]*0.5), round(image.size[1]*0.5)))
+logo = ImageTk.PhotoImage(image)
+panel = Label(root, image = logo)
+panel.pack(side="left", fill = "x")
+panel.place(x=0,y=0)
 
+#heading
+heading = Label(root, text = "GUI for Fortran Programs", font = "tkDefaultFont 12 bold")
+heading.pack(side = "top")
+heading.place(x=190,y=50)
 
 editButton = Button(root, text = "Forward modelling", command = lambda : openWindow("Forward modelling"))
-editButton.pack(expand = YES)
+editButton.pack(side = "top",fill="x")
+editButton.place(x=130,y=200)
 
 parameterEstimationButton = Button(root, text = "Parameter estimation", command = lambda : openWindow("Parameter estimation", True))
-parameterEstimationButton.pack(expand = YES)
+parameterEstimationButton.pack(side="top", fill="x")
+parameterEstimationButton.place(x=120,y=250)
 
 root.mainloop()
