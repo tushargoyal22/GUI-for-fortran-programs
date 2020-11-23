@@ -1,0 +1,66 @@
+pcf
+* control data
+restart  estimation
+    1    43     1     0     1
+    1     1 single point   1   0   0
+  5.0   2.0   0.3  0.03    10
+  3.0   3.0 0.001  0
+  0.1
+   30  0.01     3     3  0.01     3
+    1     1     1
+* parameter groups
+alpha        relative 0.01  0.0  switch  2.0 parabolic
+* parameter data
+alpha        none relative    2.00000      -1.000000E+10   1.000000E+10 alpha           1.0000        1.0000      1
+* observation groups
+obsgroup
+* observation data
+o1                     1.000000E-02  1.0  obsgroup
+o2                     5.000000E-02  1.0  obsgroup
+o3                     8.000000E-02  1.0  obsgroup
+o4                     0.120000      1.0  obsgroup
+o5                     0.150000      1.0  obsgroup
+o6                     0.170000      1.0  obsgroup
+o7                     0.210000      1.0  obsgroup
+o8                     0.240000      1.0  obsgroup
+o9                     0.260000      1.0  obsgroup
+o10                    0.290000      1.0  obsgroup
+o11                    0.320000      1.0  obsgroup
+o12                    0.350000      1.0  obsgroup
+o13                    0.380000      1.0  obsgroup
+o14                    0.410000      1.0  obsgroup
+o15                    0.430000      1.0  obsgroup
+o16                    0.490000      1.0  obsgroup
+o17                    0.520000      1.0  obsgroup
+o18                    0.560000      1.0  obsgroup
+o19                    0.610000      1.0  obsgroup
+o20                    0.660000      1.0  obsgroup
+o21                    0.700000      1.0  obsgroup
+o22                    0.740000      1.0  obsgroup
+o23                    0.800000      1.0  obsgroup
+o24                    0.830000      1.0  obsgroup
+o25                    0.850000      1.0  obsgroup
+o26                    0.880000      1.0  obsgroup
+o27                    0.910000      1.0  obsgroup
+o28                    0.930000      1.0  obsgroup
+o29                    0.930000      1.0  obsgroup
+o30                    0.960000      1.0  obsgroup
+o31                    0.980000      1.0  obsgroup
+o32                    0.990000      1.0  obsgroup
+o33                    0.980000      1.0  obsgroup
+o34                    0.980000      1.0  obsgroup
+o35                     1.00000      1.0  obsgroup
+o36                    0.990000      1.0  obsgroup
+o37                     1.02000      1.0  obsgroup
+o38                     1.00000      1.0  obsgroup
+o39                     1.01000      1.0  obsgroup
+o40                     1.01000      1.0  obsgroup
+o41                     1.00000      1.0  obsgroup
+o42                     1.00000      1.0  obsgroup
+o43                    0.990000      1.0  obsgroup
+* model command line
+test
+* model input/output
+in_1.tpl  in_1.dat
+output.ins  output.dat
+* prior information
