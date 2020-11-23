@@ -144,7 +144,8 @@ def guessSave():
 
 	for i in range(1,cnt+1):
 		newFile.write("l1 (o"+str(i)+")19:26")
-		newFile.write("\n")
+		if(i != cnt):
+			newFile.write("\n")
 	newFile.close()
     # (oi) is the observation point and it should go up to max. observation time steps
 
@@ -153,10 +154,11 @@ def guessSave():
 	newFile = open("measure.obf", 'w') 
 # Saving experimental data from in_1.dat in measure.obf corresponding to observation
 # number
-	for i in range(6,len(content)-1):
+	for i in range(6,6+cnt):
 		currobn = i-5
 		newFile.write("o"+str(currobn)+" "+content[i])
-		newFile.write("\n")
+		if(i != cnt+5):
+			newFile.write("\n")
 
 	newFile.close()
 	os.system('pestgen test in_1.par measure.obf')
