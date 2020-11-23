@@ -15,6 +15,9 @@ NavigationToolbar2Tk)
 from graph_func import *
 global edit
 change = 0
+
+
+
 root = tk.ThemedTk()
 root.get_themes()# Returns a list of all themes that can be set
 root.set_theme("radiance")
@@ -224,7 +227,7 @@ def openWindow(header, isPE = False):
 	valuesNamesArr = [valuesName1, valuesName2, valuesName3]
 
 	for i in range(len(valuesNamesArr)):
-		print(i, valuesNamesArr[i])
+		# print(i, valuesNamesArr[i])
 		fileEntries.append([])
 		for j in range(len(valuesNamesArr[i])):
 			Label(window, text = valuesNamesArr[i][j]).grid(row = rowNo//2, column = 0 + 2*(rowNo%2))
@@ -237,17 +240,17 @@ def openWindow(header, isPE = False):
 	rowNo = rowNo + 1
 	Button(window, text = 'Save', command = save).grid(row = rowNo, column = 0)
 
-
-	run_button = Button(window, text="Run", command=run_txt)
-	run_button.grid(row = rowNo, column = 1)
-
 	PlotButton = Button(window, text = "Plot", command = GraphFunction)
-	PlotButton.grid(row = rowNo, column = 2)
+	PlotButton.grid(row = rowNo, column = 1)
 
+	if(isPE==False):
+		run_button = Button(window, text="Run", command=run_txt)
+		run_button.grid(row = rowNo, column = 2)
+	
 	rowNo = rowNo + 1
 
-
 	if isPE : 
+
 		guessButton = Button(window, text = "Guess Window", command = openGuessWindow)
 		guessButton.grid(row = rowNo, column = 0)
 
@@ -361,6 +364,8 @@ def tableParameterEstimation():
 	panel.config(image=img2)
 	panel.image = img2
 	window.mainloop()
+
+
 
 editButton = Button(root, text = "Forward modelling", command = lambda : openWindow("Forward modelling"))
 editButton.pack(expand = YES)
