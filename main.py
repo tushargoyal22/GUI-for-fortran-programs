@@ -201,8 +201,29 @@ def openGuessWindow():
 
 
 
+def estimateWindow():
+
+	window = tk.ThemedTk()
+	window.get_themes()
+	window.set_theme("radiance")
+	window.geometry("450x420")
 
 
+	guessButton = Button(window, text = "Guess Window", command = openGuessWindow)
+	guessButton.pack(expand = YES)
+	# guessButton.grid(row = 1, column = 2)
+
+	TableButton = Button(window, text = "K-L information statistics", command = tableKLStatistics)
+	TableButton.pack(expand = YES)
+
+	# TableButton.grid(row = 2, column = 2)
+
+	TableButton1 = Button(window, text = "Optimisation Results", command = tableParameterEstimation)
+	TableButton1.pack(expand = YES)
+
+	# TableButton1.grid(row = 3, column = 2)
+
+	window.mainloop()
 
 
 def openWindow(header, isPE = False):
@@ -246,19 +267,10 @@ def openWindow(header, isPE = False):
 	if(isPE==False):
 		run_button = Button(window, text="Run", command=run_txt)
 		run_button.grid(row = rowNo, column = 2)
-	
-	rowNo = rowNo + 1
 
-	if isPE : 
-
-		guessButton = Button(window, text = "Guess Window", command = openGuessWindow)
-		guessButton.grid(row = rowNo, column = 0)
-
-		TableButton = Button(window, text = "K-L information statistics", command = tableKLStatistics)
-		TableButton.grid(row = rowNo, column = 1)
-
-		TableButton1 = Button(window, text = "Optimisation Results", command = tableParameterEstimation)
-		TableButton1.grid(row = rowNo, column = 2)
+	else:
+		Estimate = Button(window, text = "Estimate Parameters", command = estimateWindow)
+		Estimate.grid(row = rowNo,column = 2)
 
 	window.mainloop()
 
