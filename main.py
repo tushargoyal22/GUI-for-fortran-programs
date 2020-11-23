@@ -26,6 +26,54 @@ valuesNames = ["qs", "qf", "omegaim", "omegasf", "alpha"]
 entries = []
 
 
+
+valuesName3 = ["nz", "nm", 
+	"Length (Le)", "Bulk density of porous media (𝜌𝑏)", "Run time (Tmax)", "Pulse time (Tp)", "∆𝑡", "∆𝑥",
+	"Porosity of the macropore region (𝜃𝑓)", "Porosity of the mesopore region (𝜃𝑠)", "Porosity of the micropore region (𝜃𝑖𝑚)",
+	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", "Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
+	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", "Fraction of sorption site available for macropore region (𝑓𝑓)", 
+	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
+	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", "Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
+	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", "Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
+	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", "Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)"]
+valuesName1 = ["Mesopore seepage velocity (𝑞𝑠 )", "Macropore seepage velocity (𝑞𝑓 )",
+	"Solute mass transfer rate b/w meso-micropore (ωim)", "Solute mass transfer rate b/w meso-macropore (ωsf)", 
+	"Dispersivity (å𝐿 )", "No. of observation time steps", "Experimental data (Input from txt file or excel copy paste)"]
+valuesName2 = ["No. of observation distances to print", "Observation distances (According to No.of observation distances)", 
+	"Time steps (Input from txt file or excel copy paste)"]
+
+
+
+def getContent(fileName, sep = None):
+	text_file = open(fileName, 'r') 
+	content = text_file.read()
+	text_file.close()
+	return content.split(sep)
+
+
+def saveContent(newContent, fileName):
+	oldContent = getContent(fileName, '\n')
+
+	file = open(fileName, 'w') 
+	
+	j = 0
+	for line in oldContent:
+
+		values = line.split(' ')
+
+		if j < len(newContent):
+			for i in range(len(values)):
+				values[i] = newContent[j].get()
+				j = j + 1
+
+		file.write(" ".join(values) + "\n")
+
+	file.close()
+
+
+
+
+
 def open_txt():
 	global file_name
 	file_name = filedialog.askopenfilename(title="Open dat file", filetypes=(("dat files", "*.dat"), ))
@@ -149,46 +197,78 @@ def openGuessWindow():
 	window.mainloop()
 
 
+
+
+
+
+
 def openWindow(header, isPE = False):
+	def save():
+		saveContent(fileEntries[0], "in_1.dat")
+		saveContent(fileEntries[1], "in_2.dat")
+		saveContent(fileEntries[2], "in_3.dat")
+
+
 	window = tk.ThemedTk()
-	window.get_themes()# Returns a list of all themes that can be set
+	window.get_themes()
 	window.set_theme("radiance")
-
 	window.title(header)
-	window.geometry("450x600")
+
+
 	
-	global my_text
-	my_text = Text(window, width=40, height=10, font=("Helvetica", 16))
-	my_text.pack(expand = YES)
+	# parameters;
 
-	open_button = Button(window, text="Open dat File", command=open_txt)
-	open_button.pack(expand = YES)
+	rowNo = 0
+	content = [getContent("in_1.dat"), getContent("in_2.dat"), getContent("in_3.dat")]
+	fileEntries = []
+	valuesNamesArr = [valuesName1, valuesName2, valuesName3]
 
-	save_button = Button(window, text="Save File", command=save_txt)
-	save_button.pack(expand = YES)
+	for i in range(len(valuesNamesArr)):
+		print(i, valuesNamesArr[i])
+		fileEntries.append([])
+		for j in range(len(valuesNamesArr[i])):
+			Label(window, text = valuesNamesArr[i][j]).grid(row = rowNo//2, column = 0 + 2*(rowNo%2))
+			entry = Entry(window)
+			entry.insert(END, content[i][j])
+			entry.grid(row = rowNo//2, column = 1 + 2*(rowNo%2))
+			fileEntries[-1].append(entry)
+			rowNo = rowNo + 1
+
+	rowNo = rowNo + 1
+	Button(window, text = 'Save', command = save).grid(row = rowNo, column = 0)
+
 
 	run_button = Button(window, text="Run", command=run_txt)
-	run_button.pack(expand = YES)
+	run_button.grid(row = rowNo, column = 1)
 
+	PlotButton = Button(window, text = "Plot", command = GraphFunction)
+	PlotButton.grid(row = rowNo, column = 2)
 
-	helpButton = Button(window, text = "Help", command = openHelpWindow)
-	helpButton.pack(expand = YES)
+	rowNo = rowNo + 1
+
 
 	if isPE : 
 		guessButton = Button(window, text = "Guess Window", command = openGuessWindow)
-		guessButton.pack(expand = YES)
+		guessButton.grid(row = rowNo, column = 0)
 
 		TableButton = Button(window, text = "K-L information statistics", command = tableKLStatistics)
-		TableButton.pack(expand = YES)
+		TableButton.grid(row = rowNo, column = 1)
 
 		TableButton1 = Button(window, text = "Otimisation Results", command = tableParameterEstimation)
-		TableButton1.pack(expand = YES)
+		TableButton1.grid(rowNo = rowNo, column = 2)
 
-	PlotButton = Button(window, text = "Plot", command = GraphFunction)
-	PlotButton.pack(expand = YES)
+	
 
 
 	window.mainloop()
+
+
+
+
+
+
+
+
 def render_mpl_table(data, col_width=3.0, row_height=0.75, font_size=14,
                      header_color='#40466e', row_colors=['#f1f1f2', 'w'], edge_color='w',
                      bbox=[0, 0, 1, 1], header_columns=0,
