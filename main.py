@@ -187,9 +187,12 @@ def openGuessWindow():
 	window.title("Guess Window")
 	window.geometry("300x350")
 
+
 	global entries
 	entries = []
 	Label(window, text = " ").grid(row = 0)
+	# Label(window, text = "Fields not filled would be considered Determined").grid(row = 0)
+
 	for i in range(5):
 		Label(window, text = valuesNames[i]).grid(row = 2*i + 1)
 		entry = Entry(window)
@@ -197,7 +200,8 @@ def openGuessWindow():
 		entries.append(entry)
 		Label(window, text = " ").grid(row = 2*i + 2)
 
-	Button(window, text="Save", command = lambda : guessSave(window)).grid(row = 12, column = 1)
+
+	Button(window, text="Save", command = lambda : guessSave(window)).grid(row = 13, column = 1)
 
 	window.mainloop()
 
@@ -224,6 +228,8 @@ def estimateWindow():
 	TableButton1.pack(expand = YES)
 
 	# TableButton1.grid(row = 3, column = 2)
+	PlotButton = Button(window, text = "Plot", command = GraphFunction)
+	PlotButton.pack(expand=YES)
 
 	window.mainloop()
 
@@ -239,9 +245,6 @@ def openWindow(header, isPE = False):
 	window.get_themes()
 	window.set_theme("radiance")
 	window.title(header)
-
-
-	
 	# parameters;
 
 	rowNo = 0
@@ -263,17 +266,18 @@ def openWindow(header, isPE = False):
 	rowNo = rowNo + 1
 	Button(window, text = 'Save', command = save).grid(row = rowNo, column = 0)
 
-	PlotButton = Button(window, text = "Plot", command = GraphFunction)
-	PlotButton.grid(row = rowNo, column = 1)
 
 	if(isPE==False):
+		PlotButton = Button(window, text = "Plot", command = GraphFunction)
+		PlotButton.grid(row = rowNo, column = 1)
+
 		run_button = Button(window, text="Run", command=run_txt)
 		run_button.grid(row = rowNo, column = 2)
-
 	else:
 		Estimate = Button(window, text = "Estimate Parameters", command = estimateWindow)
 		Estimate.grid(row = rowNo,column = 2)
 
+	root.destroy()
 	window.mainloop()
 
 
