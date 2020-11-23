@@ -107,7 +107,7 @@ def openHelpWindow():
 	helpWindow.mainloop()
 
 
-def guessSave():
+def guessSave(wind):
 	file_name = 'in_1.dat'
 	text_file = open(file_name, 'r') 
 	content = text_file.read()
@@ -180,7 +180,7 @@ def guessSave():
 	os.system('pestchek test')
 	os.system('pest test')
 
-
+	wind.destroy()
 
 def openGuessWindow():
 	window = Tk()
@@ -197,7 +197,7 @@ def openGuessWindow():
 		entries.append(entry)
 		Label(window, text = " ").grid(row = 2*i + 2)
 
-	Button(window, text="Save", command = guessSave).grid(row = 12, column = 1)
+	Button(window, text="Save", command = lambda : guessSave(window)).grid(row = 12, column = 1)
 
 	window.mainloop()
 
