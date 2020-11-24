@@ -30,20 +30,222 @@ entries = []
 
 
 
-valuesName3 = ["nz", "nm", 
-	"Length (Le)", "Bulk density of porous media (𝜌𝑏)", "Run time (Tmax)", "Pulse time (Tp)", "∆𝑡", "∆𝑥",
-	"Porosity of the macropore region (𝜃𝑓)", "Porosity of the mesopore region (𝜃𝑠)", "Porosity of the micropore region (𝜃𝑖𝑚)",
-	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", "Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
-	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", "Fraction of sorption site available for macropore region (𝑓𝑓)", 
-	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
-	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", "Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
-	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", "Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
-	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", "Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)"]
-valuesName1 = ["Mesopore seepage velocity (𝑞𝑠 )", "Macropore seepage velocity (𝑞𝑓 )",
-	"Solute mass transfer rate b/w meso-micropore (ωim)", "Solute mass transfer rate b/w meso-macropore (ωsf)", 
-	"Dispersivity (å𝐿 )", "No. of observation time steps", "Experimental data (Input from txt file or excel copy paste)"]
-valuesName2 = ["No. of observation distances to print", "Observation distances (According to No.of observation distances)", 
-	"Time steps (Input from txt file or excel copy paste)"]
+
+
+
+
+valuesName3 = [
+	"nz", 
+	"nm", 
+	"Length (Le)", 
+	"Bulk density of porous media (𝜌𝑏)", 
+	"Run time (Tmax)", 
+	"Pulse time (Tp)", 
+	"∆𝑡", 
+	"∆𝑥",
+	"Porosity of the macropore region (𝜃𝑓)", 
+	"Porosity of the mesopore region (𝜃𝑠)", 
+	"Porosity of the micropore region (𝜃𝑖𝑚)",
+	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", 
+	"Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
+	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", 
+	"Fraction of sorption site available for macropore region (𝑓𝑓)", 
+	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	
+	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
+	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", 
+	"Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
+	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", 
+	"Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
+	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", 
+	"Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)"
+]
+
+valuesName1 = [
+	"Mesopore seepage velocity (𝑞𝑠 )", 
+	"Macropore seepage velocity (𝑞𝑓 )",
+	"Solute mass transfer rate b/w meso-micropore (ωim)", 
+	"Solute mass transfer rate b/w meso-macropore (ωsf)", 
+	"Dispersivity (å𝐿 )", 
+	"No. of observation time steps", 
+	"Experimental data (Input from txt file or excel copy paste)"
+]
+
+valuesName2 = [
+	"No. of observation distances to print", 
+	"Observation distances (According to No.of observation distances)", 
+	"Time steps (Input from txt file or excel copy paste)"
+]
+
+valuesNamesArr = [valuesName1, valuesName2, valuesName3]
+
+
+
+
+
+
+
+
+
+defaultValuesADE = [
+	"Porosity of the mesopore region (𝜃𝑠)", 
+	"Porosity of the micropore region (𝜃𝑖𝑚)",
+	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", 
+	"Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
+	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", 
+	"Fraction of sorption site available for macropore region (𝑓𝑓)", 
+	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	
+	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
+	"Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
+	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", 
+	"Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
+	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", 
+	"Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)", 
+	"Mesopore seepage velocity (𝑞𝑠 )", 
+	"Solute mass transfer rate b/w meso-micropore (ωim)", 
+	"Solute mass transfer rate b/w meso-macropore (ωsf)"
+]
+
+
+askValuesADE = [
+	"Porosity of the macropore region (𝜃𝑓)", 
+	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", 
+	"Macropore seepage velocity (𝑞𝑓 )",
+	"Dispersivity (å𝐿 )"
+]
+
+
+
+defaultValuesMIM = [
+	"Porosity of the mesopore region (𝜃𝑠)", 
+	"Porosity of the micropore region (𝜃𝑖𝑚)",
+	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", 
+	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
+	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", 
+	"Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
+	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", 
+	"Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)", 
+	"Mesopore seepage velocity (𝑞𝑠 )", 
+	"Solute mass transfer rate b/w meso-micropore (ωim)"
+]
+
+
+
+askValuesMIM = [
+	"Porosity of the macropore region (𝜃𝑓)", 
+	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", 
+	"Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
+	"Fraction of sorption site available for macropore region (𝑓𝑓)", 
+	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	
+	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", 
+	"Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
+	"Macropore seepage velocity (𝑞𝑓 )",
+	"Solute mass transfer rate b/w meso-macropore (ωsf)", 
+	"Dispersivity (å𝐿 )", 
+]
+
+
+
+defaultValuesMPNE = [
+	"Porosity of the micropore region (𝜃𝑖𝑚)",
+	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", 
+	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
+	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", 
+	"Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)", 
+	"Solute mass transfer rate b/w meso-micropore (ωim)", 
+]
+
+
+
+
+askValuesMPNE = [
+	"Porosity of the macropore region (𝜃𝑓)", 
+	"Porosity of the mesopore region (𝜃𝑠)", 
+	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", 
+	"Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
+	"Fraction of sorption site available for macropore region (𝑓𝑓)", 
+	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	
+	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", 
+	"Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
+	"Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
+	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", 
+	"Mesopore seepage velocity (𝑞𝑠 )", 
+	"Macropore seepage velocity (𝑞𝑓 )",
+	"Solute mass transfer rate b/w meso-macropore (ωsf)", 
+	"Dispersivity (å𝐿 )"
+]
+
+
+
+
+defaultValuesDADE = [
+	"Porosity of the micropore region (𝜃𝑖𝑚)",
+	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", 
+	"Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
+	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", 
+	"Fraction of sorption site available for macropore region (𝑓𝑓)", 
+	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	
+	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
+	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", 
+	"Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
+	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", 
+	"Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
+	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", 
+	"Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)", 
+	"Solute mass transfer rate b/w meso-micropore (ωim)"
+]
+
+
+
+
+askValuesDADE = [
+	"Porosity of the macropore region (𝜃𝑓)", 
+	"Porosity of the mesopore region (𝜃𝑠)", 
+	"Mesopore seepage velocity (𝑞𝑠 )", 
+	"Macropore seepage velocity (𝑞𝑓 )",
+	"Solute mass transfer rate b/w meso-macropore (ωsf)", 
+	"Dispersivity (å𝐿 )"
+]
+
+
+defaultValuesALL = []
+
+
+askValuesALL = [
+	"Porosity of the macropore region (𝜃𝑓)", 
+	"Porosity of the mesopore region (𝜃𝑠)", 
+	"Porosity of the micropore region (𝜃𝑖𝑚)",
+	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", 
+	"Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
+	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", 
+	"Fraction of sorption site available for macropore region (𝑓𝑓)", 
+	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	
+	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
+	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", 
+	"Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
+	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", 
+	"Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
+	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", 
+	"Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)", 
+	"Mesopore seepage velocity (𝑞𝑠 )", 
+	"Macropore seepage velocity (𝑞𝑓 )",
+	"Solute mass transfer rate b/w meso-micropore (ωim)", 
+	"Solute mass transfer rate b/w meso-macropore (ωsf)", 
+	"Dispersivity (å𝐿 )"
+]
+
+
+
+oneValue = [
+	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", 
+	"Fraction of sorption site available for macropore region (𝑓𝑓)"
+]
+
+
+
+
+
+
+
 
 
 
@@ -54,23 +256,21 @@ def getContent(fileName, sep = None):
 	return content.split(sep)
 
 
-def saveContent(newContent, fileName):
+def saveContent(newContent, fileName, valuesToUpdate):
 	oldContent = getContent(fileName, '\n')
-
 	file = open(fileName, 'w') 
-	
-	j = 0
+
+	valueNames = valuesNamesArr[int(fileName[3]) - 1]
+
+	vi = 0
 	for line in oldContent:
-
 		values = line.split(' ')
-
-		if j < len(newContent):
+		if vi < len(valueNames):
 			for i in range(len(values)):
-				values[i] = newContent[j].get()
-				j = j + 1
-
+				if valueNames[vi] in valuesToUpdate:
+					values[i] = newContent[valuesToUpdate.index(valueNames[vi])].get()
+				vi = vi + 1
 		file.write(" ".join(values) + "\n")
-
 	file.close()
 
 
@@ -234,51 +434,91 @@ def estimateWindow():
 	window.mainloop()
 
 
-def openWindow(header, isPE = False):
+
+
+
+def entriesWindow(header, defaultValues, askValues):
+	top = Tk()
+
 	def save():
-		saveContent(fileEntries[0], "in_1.dat")
-		saveContent(fileEntries[1], "in_2.dat")
-		saveContent(fileEntries[2], "in_3.dat")
+		saveContent(fileEntries, "in_1.dat", defaultValues + askValues)
+		saveContent(fileEntries, "in_2.dat", defaultValues + askValues)
+		saveContent(fileEntries, "in_3.dat", defaultValues + askValues)
+		top.destroy()
 
 
+	fileEntries = []
+	for i in range(len(defaultValues)):
+		# Label(top, text = defaultValues[i]).grid(row = i, column = 0)
+		entry = Entry(top)
+		defVal = "1E-16"
+		if defaultValues[i] in oneValue:
+			defVal = "1"
+		entry.insert(END, defVal)
+		# entry.grid(row = i, column = 1)
+		fileEntries.append(entry)
+
+	for i in range(len(askValues)):
+		Label(top, text = askValues[i]).grid(row = i + len(defaultValues), column = 0)
+		entry = Entry(top)
+		entry.grid(row = i + len(defaultValues), column = 1)
+		fileEntries.append(entry)
+
+	Button(top, text = 'Save', command = save).grid()
+
+
+
+
+
+
+
+def openWindow(header, isPE = False):
 	window = tk.ThemedTk()
 	window.get_themes()
 	window.set_theme("radiance")
 	window.title(header)
-	# parameters;
-
-	rowNo = 0
-	content = [getContent("in_1.dat"), getContent("in_2.dat"), getContent("in_3.dat")]
-	fileEntries = []
-	valuesNamesArr = [valuesName1, valuesName2, valuesName3]
-
-	for i in range(len(valuesNamesArr)):
-		# print(i, valuesNamesArr[i])
-		fileEntries.append([])
-		for j in range(len(valuesNamesArr[i])):
-			Label(window, text = valuesNamesArr[i][j]).grid(row = rowNo//2, column = 0 + 2*(rowNo%2))
-			entry = Entry(window)
-			entry.insert(END, content[i][j])
-			entry.grid(row = rowNo//2, column = 1 + 2*(rowNo%2))
-			fileEntries[-1].append(entry)
-			rowNo = rowNo + 1
-
-	rowNo = rowNo + 1
-	Button(window, text = 'Save', command = save).grid(row = rowNo, column = 0)
+	window.geometry("450x420")
 
 
-	if(isPE==False):
+	headers = [
+		"Equilibrium solute transport model (ADE)", 
+		"Dual-Porosity Single Permeability Models (MIM)", 
+		"Dual porosity single permeability two site model (MPNE)", 
+		"Single porosity dual permeability two site model (DADE)", 
+		"Triple porosity dual permeability three site model"
+	]
+
+	
+	Button(window, text = headers[0], command = lambda : entriesWindow(headers[0], defaultValuesADE, askValuesADE)).pack(expand = YES)
+	Button(window, text = headers[1], command = lambda : entriesWindow(headers[1], defaultValuesMIM, askValuesMIM)).pack(expand = YES)
+	Button(window, text = headers[2], command = lambda : entriesWindow(headers[2], defaultValuesMPNE, askValuesMPNE)).pack(expand = YES)
+	Button(window, text = headers[3], command = lambda : entriesWindow(headers[3], defaultValuesDADE, askValuesDADE)).pack(expand = YES)
+	Button(window, text = headers[4], command = lambda : entriesWindow(headers[4], defaultValuesALL, askValuesALL)).pack(expand = YES)
+
+
+	print(isPE)
+
+	if isPE == False:
 		PlotButton = Button(window, text = "Plot", command = GraphFunction)
-		PlotButton.grid(row = rowNo, column = 1)
+		PlotButton.pack(expand = YES)
 
 		run_button = Button(window, text="Run", command=run_txt)
-		run_button.grid(row = rowNo, column = 2)
+		run_button.pack(expand = YES)
 	else:
 		Estimate = Button(window, text = "Estimate Parameters", command = estimateWindow)
-		Estimate.grid(row = rowNo,column = 2)
+		Estimate.pack(expand = YES)
 
 	root.destroy()
 	window.mainloop()
+
+
+
+
+
+
+
+
+
 
 
 def render_mpl_table(data, col_width=3.0, row_height=0.75, font_size=14,
@@ -399,7 +639,7 @@ editButton = Button(root, text = "Forward modelling", command = lambda : openWin
 editButton.pack(side = "top",fill="x")
 editButton.place(x=130,y=200)
 
-parameterEstimationButton = Button(root, text = "Parameter estimation", command = lambda : openWindow("Parameter estimation", True))
+parameterEstimationButton = Button(root, text = "Parameter estimation", command = lambda : openWindow("Parameter Estimation", True))
 parameterEstimationButton.pack(side="top", fill="x")
 parameterEstimationButton.place(x=120,y=250)
 
