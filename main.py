@@ -358,7 +358,6 @@ def tableParameterEstimation():
 	col2 = []
 	col3 = []
 	col4 = []
-
 	for line in f: 
 		lines.append(line)
 	start = lines.index('                            OPTIMISATION RESULTS\n')
@@ -377,7 +376,7 @@ def tableParameterEstimation():
 	render_mpl_table(df, header_columns=0, col_width=3.0)
 	
 	img2 =Image.open("tableKLStatistics.png")
-	img2=img2.resize((1000,500),Image.ANTIALIAS)
+	img2=img2.resize((1000,200 + 50*change),Image.ANTIALIAS)
 	img2= ImageTk.PhotoImage(img2)
 	panel.config(image=img2)
 	panel.image = img2
