@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import filedialog
+from tkinter.filedialog import askopenfilename
 from tkinter import font
 import os
 import six
@@ -253,20 +253,39 @@ def saveContent(newContent, fileName, valuesToUpdate):
 
 
 
+def open_txt(window):
+	
+	file_name = askopenfilename(parent = window, title="Open file", filetypes=(("text files", "*.txt"), ))
+
+	file_name = 'data.txt'
+	data_file = open(file_name, 'r')# Read only r 
+	stuff = data_file.read()
+	stuff = stuff.split('\n')
+	data_file.close()
+	while len(stuff) and stuff[-1]== '':
+		stuff.pop()
+
+	cnt = len(stuff)
+	
+
+	file = open('in_1.dat', 'r') 
+	content = file.read()
+	file.close()
+
+	content = content.split('\n')
 
 
-def open_txt():
-	global file_name
-	file_name = filedialog.askopenfilename(title="Open dat file", filetypes=(("dat files", "*.dat"), ))
-	text_file = open(file_name, 'r')# Read only r 
-	stuff = text_file.read()
+	file = open('in_1.dat', 'w') 
+	for i in range(5):
+		file.write(content[i] + '\n')
 
-	my_text.insert(END, stuff)
-	text_file.close()
+	file.write(str(cnt) + '\n')
 
-def save_txt():
-	text_file = open(file_name, 'w') 
-	text_file.write(my_text.get(1.0, END))
+	for i in range(cnt):
+		file.write(stuff[i] + '\n')
+
+	file.close()
+
 
 def run_txt():
 	os.system('test.exe')
@@ -483,7 +502,9 @@ def openWindow(header, isPE = False):
 	Button(window, text = headers[4], command = lambda : entriesWindow(headers[4], defaultValuesALL, askValuesALL)).pack(expand = YES)
 
 
-	print(isPE)
+	expdata = Button( window, text="Upload Experimental data", command= lambda:open_txt(window))
+	expdata.pack(expand = YES)
+
 
 	if isPE == False:
 		PlotButton = Button(window, text = "Plot", command = GraphFunction)
