@@ -42,22 +42,7 @@ valuesName3 = [
 	"Run time (Tmax)", 
 	"Pulse time (Tp)", 
 	"∆𝑡", 
-	"∆𝑥",
-	"Porosity of the macropore region (𝜃𝑓)", 
-	"Porosity of the mesopore region (𝜃𝑠)", 
-	"Porosity of the micropore region (𝜃𝑖𝑚)",
-	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", 
-	"Instantaneous sorption fraction in mesopore region (𝐹𝑠)",
-	"Instantaneous sorption fraction in micropore region (𝐹𝑖𝑚)", 
-	"Fraction of sorption site available for macropore region (𝑓𝑓)", 
-	"Fraction of sorption site available for mesopore region (𝑓𝑠)",	
-	"Fraction of sorption site available for immobile region (𝑓𝑖𝑚)",
-	"Equilibrium sorption coefficient in macropore region (𝐾𝑓)", 
-	"Equilibrium sorption coefficient in mesopore region (𝐾𝑠)", 
-	"Equilibrium sorption coefficient in micropore region (𝐾𝑖𝑚)", 
-	"Rate-limited sorbed coefficient in macropore region (𝑘𝑓)", 
-	"Rate-limited sorbed coefficient in mesopore region (𝑘𝑠)", 
-	"Rate-limited sorbed coefficient in micropore region (𝑘𝑖𝑚)"
+	"∆𝑥"
 ]
 
 valuesName1 = [
@@ -239,13 +224,6 @@ oneValue = [
 	"Instantaneous sorption fraction in macropore region (𝐹𝑓)", 
 	"Fraction of sorption site available for macropore region (𝑓𝑓)"
 ]
-
-
-
-
-
-
-
 
 
 
@@ -441,13 +419,22 @@ def entriesWindow(header, defaultValues, askValues):
 	top = Tk()
 
 	def save():
-		saveContent(fileEntries, "in_1.dat", defaultValues + askValues)
-		saveContent(fileEntries, "in_2.dat", defaultValues + askValues)
-		saveContent(fileEntries, "in_3.dat", defaultValues + askValues)
+		saveContent(fileEntries, "in_1.dat", valuesName3 + defaultValues + askValues)
+		saveContent(fileEntries, "in_2.dat", valuesName3 + defaultValues + askValues)
+		saveContent(fileEntries, "in_3.dat", valuesName3 + defaultValues + askValues)
 		top.destroy()
 
 
 	fileEntries = []
+
+	for i in range(len(valuesName3)):
+		Label(top, text = valuesName3[i]).grid(row = i, column = 0)
+		entry = Entry(top)
+		entry.grid(row = i, column = 1)
+		fileEntries.append(entry)
+
+
+
 	for i in range(len(defaultValues)):
 		# Label(top, text = defaultValues[i]).grid(row = i, column = 0)
 		entry = Entry(top)
@@ -459,9 +446,9 @@ def entriesWindow(header, defaultValues, askValues):
 		fileEntries.append(entry)
 
 	for i in range(len(askValues)):
-		Label(top, text = askValues[i]).grid(row = i + len(defaultValues), column = 0)
+		Label(top, text = askValues[i]).grid(row = i + len(valuesName3), column = 0)
 		entry = Entry(top)
-		entry.grid(row = i + len(defaultValues), column = 1)
+		entry.grid(row = i + len(valuesName3), column = 1)
 		fileEntries.append(entry)
 
 	Button(top, text = 'Save', command = save).grid()
