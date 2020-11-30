@@ -253,11 +253,9 @@ def saveContent(newContent, fileName, valuesToUpdate):
 
 
 
-def open_txt(window):
+def open_txt_exper(window):
 	
 	file_name = askopenfilename(parent = window, title="Open file", filetypes=(("text files", "*.txt"), ))
-
-	file_name = 'data.txt'
 	data_file = open(file_name, 'r')# Read only r 
 	stuff = data_file.read()
 	stuff = stuff.split('\n')
@@ -285,6 +283,35 @@ def open_txt(window):
 		file.write(stuff[i] + '\n')
 
 	file.close()
+
+def open_txt_time(window):
+	
+	file_name = askopenfilename(parent = window, title="Open file", filetypes=(("text files", "*.txt"), ))
+	data_file = open(file_name, 'r')# Read only r 
+	stuff = data_file.read()
+	stuff = stuff.split('\n')
+	data_file.close()
+	while len(stuff) and stuff[-1]== '':
+		stuff.pop()
+
+	cnt = len(stuff)
+	
+
+	file = open('in_2.dat', 'r') 
+	content = file.read()
+	content = content.split('\n')
+	file.close()
+
+
+	file = open('in_2.dat', 'w') 
+	for i in range(2):
+		file.write(content[i] + '\n')
+
+	for i in range(cnt):
+		file.write(stuff[i] + '\n')
+
+	file.close()
+
 
 
 def run_txt():
@@ -502,8 +529,11 @@ def openWindow(header, isPE = False):
 	Button(window, text = headers[4], command = lambda : entriesWindow(headers[4], defaultValuesALL, askValuesALL)).pack(expand = YES)
 
 
-	expdata = Button( window, text="Upload Experimental data", command= lambda:open_txt(window))
+	expdata = Button( window, text="Upload Experimental data", command= lambda:open_txt_exper(window))
 	expdata.pack(expand = YES)
+
+	timedata = Button( window, text="Upload Time Stamps", command= lambda:open_txt_time(window))
+	timedata.pack(expand = YES)
 
 
 	if isPE == False:
@@ -518,15 +548,6 @@ def openWindow(header, isPE = False):
 
 	root.destroy()
 	window.mainloop()
-
-
-
-
-
-
-
-
-
 
 
 def render_mpl_table(data, col_width=3.0, row_height=0.75, font_size=14,
